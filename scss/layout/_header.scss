@@ -1,0 +1,267 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/grid" as grid;
+@use "../layout/forms" as form;
+@use "../layout/flex" as flex;
+@use "../components/dropdown" as drop;
+@use "../themes/dark--mode";
+
+.header {
+  position: fixed;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  background-color: var.$bg-ff;
+  padding: 2rem 0;
+  box-shadow: 2px 4px 8px 0px var.$bg-shadow;
+  z-index: 11111112;
+  transition: 0.5s;
+
+  .container {
+    padding: 0 20px;
+    background-color: transparent;
+  }
+
+  &--bd {
+    @include flex.flex(no, center, space-between, 10);
+  }
+
+  &--md {
+    display: none !important;
+    gap: 20px;
+    justify-content: space-between;
+    &__menu {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+
+      .header--menuLink a {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 565px) {
+    &--bd {
+      display: none;
+    }
+    &--md {
+      display: flex !important;
+    }
+  }
+
+  &--brand {
+    a {
+      @include flex.flex(no, center, space-between, 11);
+      span {
+        @include mix.text(var.$bg-41, 18, 7, 100%);
+        @media (max-width: 770px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  form {
+    position: relative;
+    max-width: 374px;
+    width: 100%;
+    padding: 10px;
+    @include flex.flex(column, no, no, 10);
+    border: 1px solid var.$bg-70;
+    ul {
+      position: absolute;
+      top: 45px;
+      left: -1px;
+      border: 1px solid var.$bg-70;
+      padding: 10px;
+      overflow: auto;
+      @include flex.flex(column, no, no, 10);
+      border-top: none;
+      width: calc(100% + 2px);
+      max-height: calc(100vh - 160px);
+      &,
+      & * {
+        transition: 0.5s;
+      }
+      background-color: var.$bg-ff;
+      li {
+        @include flex.flex(no, center, no, 10);
+        padding: 5px;
+        border-radius: 5px;
+        &:hover {
+          background-color: var.$bg-41;
+          a {
+            color: var.$bg-f3;
+          }
+        }
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          transform: scale(1.02);
+        }
+        a {
+          @include mix.text(var.$bg-8f, 16, 4, 150%);
+          white-space: normal;
+          transform: scale(1);
+        }
+      }
+    }
+
+    span {
+      @include mix.pos(absolute, -10, -10);
+      @include mix.text(var.$bg-ff, 14, 5, null);
+      @include btn.btn(2px 4, 5, no, var.$bg-f6);
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    height: 24px;
+  }
+
+  input {
+    outline: none;
+    @include btn.btn(0, 4, none, no);
+    width: 100%;
+    @include mix.text(var.$bg-41, 16, 4, 150%);
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+    &:focus {
+      .header--search__form {
+        box-shadow: 3px 3px 5px 1px var.$bg-70;
+      }
+    }
+    &::placeholder {
+      @include mix.text(var.$bg-8f, 16, 4, 150%);
+    }
+  }
+
+  &--menu {
+    li {
+      position: relative;
+    }
+    &Link {
+      @include btn.btn(8, 4, null, var.$bg-70);
+      @include flex.flex(no, center, no, 8);
+      transition: 0.3s;
+      &:hover {
+        background-color: var.$bg-f6;
+      }
+      a {
+        @include mix.text(var.$bg-ff, 16, 4, 150%, center);
+        @media (max-width: 920px) {
+          display: none;
+        }
+      }
+    }
+    @include flex.flex(no, center, space-between, 24);
+    background-color: var.$bg-ff;
+    a {
+      transform: scale(1);
+      @include flex.flex(column, center, no, 8);
+      text-decoration: none;
+
+      div {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-block;
+        padding: 2px 4px;
+        border-radius: 5px;
+        background: #f63;
+        text-decoration: none;
+      }
+
+      span {
+        @include mix.text(var.$bg-41, 12, 4, 150%);
+      }
+      svg {
+        fill: var.$bg-41;
+      }
+      &:hover {
+        span {
+          color: var.$bg-f6;
+        }
+        svg {
+          fill: var.$bg-f6;
+        }
+      }
+    }
+    &__me {
+      @include flex.flex(no, center, no, 10);
+      cursor: pointer;
+      span {
+        padding-right: 66px;
+        @include mix.text(var.$bg-23, 16, 4, 150%);
+        @media (max-width: 920px) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.category {
+  &--menus {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 40px 20px;
+    background-color: var.$bg-ff;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+    gap: 20px 40px;
+    display: grid;
+    box-shadow: 0px 8px 16px 0px #00000026;
+    transform: translateY(-100%);
+    z-index: 11111111;
+    transition: 0.5s;
+    @media (max-width: 910px) {
+      grid-template: repeat(5, 1fr) / repeat(3, 1fr);
+    }
+    @media (max-width: 670px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 565px) {
+      top: auto;
+      bottom: 94px;
+      transform: translateY(100%);
+      height: calc(90vh - 250px);
+      grid-template: repeat(7, 1fr) / repeat(2, 1fr);
+      box-shadow: 15px 0px 16px 0px #00000026;
+      overflow: auto;
+      gap: 20px;
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &.active {
+      transform: translateY(0);
+    }
+  }
+
+  &--menu {
+    height: 24px;
+    a {
+      @include mix.text(var.$bg-41, 16, 7, 150%);
+      &:hover {
+        color: var.$bg-f6;
+      }
+    }
+  }
+}

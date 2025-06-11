@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вси Продукты</title>
+  <link rel="icon" href="../images/components/logotiveIcon.svg">
+  <link rel="stylesheet" href="../css/style.min.css">
+</head>
+
+<body>
+
+  <div class="loadingBox"></div>
+
+
+  <!--|| header ||-->
+
+  <header class="header"></header>
+
+  <ul class="category--menus" id="category__menus"></ul>
+
+  <main>
+
+    <nav aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../index.html">Главная</a></li>
+          <li>Вси продукты</li>
+        </ol>
+      </div>
+    </nav>
+
+    <section class="allProduct">
+      <div class="container allProduct--wrapper">
+
+        <h2>Вси продукты</h2>
+        <div class="stock--cards allProduct--list"></div>
+
+        <div class="pagination">
+
+          <ul class="pagination--list  pagination--firstList">
+            <li class="FirstLast"><img src="../images/components/paginationDubleButton.svg"
+                alt="click here to win first page"></li>
+            <li class="FirstLast"><img src="../images/components/paginationButton.svg"
+                alt="click here to win last page"></li>
+          </ul>
+
+          <ul class="pagination--list  pagination--CountList"></ul>
+
+          <ul class="pagination--list pagination--lastList">
+            <li class="FirstLast"><img src="../images/components/paginationButton.svg"
+                alt="click here to win next page"></li>
+            <li class="FirstLast"><img src="../images/components/paginationDubleButton.svg"
+                alt="click here to win last page"></li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!--|| footer ||-->
+
+  <footer class="footer"></footer>
+
+  <script src="../Js/Datas/product-data.js"></script>
+  <script src="../Js/Datas/offerSectionData.js"></script>
+  <script src="../Js/Datas/articleData.js"></script>
+  <script src="../Js/Datas/category-data.js"></script>
+
+  <!-- ||components codes|| -->
+
+  <script src="../Js/base/headerAndFooter.js"></script>
+  <script src="../Js/components/main.js"></script>
+  <script src="../Js/components/loading.js"></script>
+
+
+  <!-- || add cards for only categories page || -->
+
+  <script type="module" src="../Js/ВсиПродукты/creatProductCard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/flex" as flex;
+@use "../themes/dark--mode";
+
+.allProduct {
+  &--wrapper {
+    @include flex.flex(column, no, no, 50);
+
+    h2 {
+      color: var.$bg-41;
+      font-weight: 700;
+      line-height: 150%;
+      font-size: clamp(18px, 7vw, 36px);
+    }
+  }
+  &--list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: visible;
+    transform: translateY(0);
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 780px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 450px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .stock--card,
+    .stock--card_img img {
+      width: 100%;
+    }
+  }
+}
+
+.noProduct {
+  color: red;
+  font-weight: 700;
+  line-height: 150%;
+  font-size: clamp(18px, 7vw, 36px);
+  width: 100%;
+}
+
+.pagination {
+  @include flex.flex(no, center, space-between, 16);
+
+  margin: 0 auto;
+
+  @media (max-width: 450px) {
+    &--firstList,
+    &--lastList {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+  &--list {
+    @include flex.flex(no, center, space-between, 16);
+
+    li {
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.1s;
+      max-width: 40px;
+      max-height: 40px;
+
+      &.clickPage {
+        background-color: var.$bg-70;
+        color: var.$bg-ff;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      &:hover {
+        background-color: var.$bg-f6;
+        color: var.$bg-ff;
+
+        img {
+          filter: invert(100%) brightness(1000%);
+        }
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  &--lastList {
+    li {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
